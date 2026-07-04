@@ -61,14 +61,17 @@ body{background:#071207;overflow:hidden;font-family:'Segoe UI',sans-serif;touch-
 .howto-text p{font-size:12px;color:#7a9a7a;line-height:1.5;}
 
 /* MOD SEÇİMİ */
-#screen-mode{background:radial-gradient(ellipse at 50% 30%,#1a0d2e,#071207 70%);}
-.mode-title{font-size:24px;font-weight:900;color:#fff;margin-bottom:24px;text-align:center;}
-.mode-cards{display:flex;flex-direction:column;gap:12px;width:100%;max-width:340px;}
-.mode-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:16px 18px;cursor:pointer;transition:transform .15s,background .15s;}
-.mode-card:hover{transform:scale(1.03);background:rgba(255,255,255,.1);}
-.mode-card h3{font-size:16px;color:#fff;margin-bottom:4px;}
-.mode-card p{font-size:11px;color:#888;line-height:1.5;}
-.mode-card .mode-ico{font-size:26px;margin-bottom:6px;}
+#screen-mode{background:radial-gradient(ellipse at 50% 30%,#1a0d2e,#071207 70%);overflow-y:auto;justify-content:flex-start;padding:20px 16px 32px;}
+#screen-mode::-webkit-scrollbar{width:3px;}
+#screen-mode::-webkit-scrollbar-thumb{background:#2a1a4a;border-radius:3px;}
+#screen-solo-time{background:radial-gradient(ellipse at 50% 30%,#0d1a2e,#071207 70%);overflow-y:auto;justify-content:flex-start;padding:28px 16px 32px;}
+.mode-title{font-size:22px;font-weight:900;color:#fff;margin-bottom:16px;text-align:center;width:100%;max-width:340px;}
+.mode-cards{display:flex;flex-direction:column;gap:8px;width:100%;max-width:340px;}
+.mode-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:10px 14px;cursor:pointer;transition:transform .15s,background .15s;}
+.mode-card:hover{transform:scale(1.02);background:rgba(255,255,255,.1);}
+.mode-card h3{font-size:14px;color:#fff;margin-bottom:2px;}
+.mode-card p{font-size:11px;color:#888;line-height:1.4;}
+.mode-card .mode-ico{font-size:22px;margin-bottom:4px;}
 .mode-card.selected{border-color:#ff6b35;background:rgba(255,107,53,.12);}
 .mode-start-btn{width:100%;max-width:340px;margin-top:8px;background:linear-gradient(135deg,#ff6b35,#e63900);color:#fff;border:none;border-radius:14px;padding:14px;font-size:16px;font-weight:700;cursor:pointer;transition:transform .15s;}
 .mode-start-btn:hover{transform:scale(1.03);}
@@ -148,6 +151,63 @@ body{background:#071207;overflow:hidden;font-family:'Segoe UI',sans-serif;touch-
 /* SES BUTONU */
 #sound-btn{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.72);border:1px solid rgba(255,255,255,.15);color:#fff;border-radius:9px;padding:8px 16px;font-size:12px;cursor:pointer;pointer-events:all;backdrop-filter:blur(6px);}
 #sound-btn:hover{background:rgba(255,255,255,.12);}
+
+/* ZAMANLAYICI */
+#timer-box{position:absolute;top:12px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.82);border:2px solid rgba(0,230,118,.4);border-radius:14px;padding:6px 20px;color:#00e676;font-size:22px;font-weight:900;letter-spacing:2px;backdrop-filter:blur(8px);pointer-events:none;display:none;font-variant-numeric:tabular-nums;}
+#timer-box.urgent{border-color:rgba(255,60,60,.7);color:#ff4444;animation:timerPulse .5s ease infinite alternate;}
+@keyframes timerPulse{from{transform:translateX(-50%) scale(1);}to{transform:translateX(-50%) scale(1.06);}}
+
+/* YARIŞ BANNER */
+#race-banner{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,.9);border-radius:20px;padding:18px 36px;font-size:20px;font-weight:900;letter-spacing:2px;opacity:0;pointer-events:none;transition:opacity .3s;text-align:center;border:2px solid rgba(255,165,0,.5);z-index:25;}
+#race-banner.show{opacity:1;}
+
+/* SÜRE BİTTİ OVERLAY */
+#time-up{position:absolute;inset:0;background:rgba(0,0,0,.88);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:22;opacity:0;pointer-events:none;transition:opacity .4s;}
+#time-up.show{opacity:1;pointer-events:all;}
+#tu-title{font-size:48px;font-weight:900;color:#ff4444;letter-spacing:3px;text-shadow:0 0 30px #ff0000;margin-bottom:10px;}
+#tu-sub{font-size:18px;color:#ccc;margin-bottom:6px;}
+#tu-score{font-size:15px;color:#aaa;margin-bottom:22px;}
+#tu-results{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:12px 24px;min-width:260px;margin-bottom:20px;}
+.tur-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;font-size:14px;color:#ccc;gap:18px;}
+.tur-row.winner .tur-name,.tur-row.winner .tur-s{color:#ffd700;font-weight:800;}
+#tu-btn{background:#ffd700;color:#000;border:none;border-radius:12px;padding:13px 36px;font-size:17px;font-weight:700;cursor:pointer;}
+
+/* MOD SEÇİM GELİŞTİRME */
+.mode-section-title{font-size:11px;color:#888;letter-spacing:2px;text-transform:uppercase;margin:12px 0 6px;width:100%;max-width:340px;text-align:left;}
+.time-chips{display:flex;gap:8px;width:100%;max-width:340px;margin-bottom:4px;flex-wrap:wrap;}
+.time-chip{flex:1;min-width:60px;padding:8px 0;border-radius:10px;border:1.5px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:#ccc;font-size:13px;font-weight:700;cursor:pointer;text-align:center;transition:all .15s;}
+.time-chip:hover{background:rgba(255,255,255,.14);}
+.time-chip.selected{border-color:#00e676;background:rgba(0,230,118,.18);color:#00e676;}
+.race-toggle{display:flex;align-items:center;gap:10px;width:100%;max-width:340px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:10px 16px;cursor:pointer;transition:background .15s;}
+.race-toggle:hover{background:rgba(255,255,255,.1);}
+.race-toggle input[type=checkbox]{width:18px;height:18px;accent-color:#ff6b35;cursor:pointer;}
+.race-toggle-label{font-size:13px;color:#ccc;flex:1;}
+.race-toggle-label strong{color:#ff6b35;}
+
+/* HAKKINDA EKRANI */
+#screen-about{background:radial-gradient(ellipse at 50% 20%,#0a1f2e,#071207 60%);overflow:hidden;}
+.about-content{max-width:520px;width:100%;padding:0 20px;display:flex;flex-direction:column;height:100%;overflow-y:auto;}
+.about-content::-webkit-scrollbar{width:3px;}
+.about-content::-webkit-scrollbar-thumb{background:#1a3a2a;border-radius:3px;}
+.about-header{padding:24px 0 16px;text-align:center;flex-shrink:0;}
+.about-logo{font-size:28px;font-weight:900;color:#fff;letter-spacing:3px;margin-bottom:4px;}
+.about-logo span{color:#00e676;}
+.about-version{font-size:11px;color:#4a8a5a;letter-spacing:3px;margin-bottom:6px;}
+.about-tagline{font-size:13px;color:#7aaa8a;}
+.about-divider{border:none;border-top:1px solid rgba(255,255,255,.08);margin:14px 0;}
+.changelog-title{font-size:10px;font-weight:700;letter-spacing:3px;color:#00e676;text-transform:uppercase;margin-bottom:12px;}
+.changelog-entry{margin-bottom:18px;background:rgba(255,255,255,.04);border-radius:12px;padding:12px 14px;border-left:3px solid #00e676;}
+.changelog-entry.latest{border-left-color:#ffd700;background:rgba(255,215,0,.05);}
+.changelog-ver{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.cver-tag{font-size:11px;font-weight:700;background:rgba(0,230,118,.18);color:#00e676;border-radius:6px;padding:2px 8px;letter-spacing:1px;}
+.cver-tag.gold{background:rgba(255,215,0,.18);color:#ffd700;}
+.cver-date{font-size:10px;color:#556;}
+.cver-label{font-size:10px;color:#ff8c42;background:rgba(255,140,66,.15);border-radius:4px;padding:1px 6px;margin-left:auto;}
+.changelog-items{list-style:none;padding:0;}
+.changelog-items li{font-size:12px;color:#aac;padding:3px 0;display:flex;gap:6px;align-items:flex-start;}
+.changelog-items li::before{content:'✦';color:#00e676;font-size:10px;flex-shrink:0;margin-top:1px;}
+.changelog-entry.latest .changelog-items li::before{color:#ffd700;}
+.about-credits{text-align:center;padding:14px 0 20px;font-size:11px;color:#3a5a4a;flex-shrink:0;}
 </style>
 </head>
 <body>
@@ -161,44 +221,76 @@ body{background:#071207;overflow:hidden;font-family:'Segoe UI',sans-serif;touch-
     <div class="menu-badge">
       <div class="mbadge">⛳ 1000 DELİK</div>
       <div class="mbadge">🤖 AI RAKİP</div>
-      <div class="mbadge">🎵 SES</div>
-      <div class="mbadge">📷 DİNAMİK KAMERA</div>
+      <div class="mbadge">⏱️ SÜRELİ MOD</div>
+      <div class="mbadge">🏎️ YARIŞ MODU</div>
     </div>
     <button class="menu-btn" id="btn-play">⛳ TEK OYUNCU</button>
     <button class="menu-btn" id="btn-pvp">🤖 AI'YA KARŞI OYN</button>
     <button class="menu-btn" id="btn-levels">🗺️ DELİK SEÇ</button>
     <button class="menu-btn" id="btn-howto">❓ NASIL OYNANIR</button>
+    <button class="menu-btn" id="btn-about">ℹ️ GÜNCELLEMELER</button>
   </div>
-  <div class="menu-version">v4.0 · MİNİ GOLF 3D</div>
+  <div class="menu-version">v5.0 · MİNİ GOLF 3D</div>
+</div>
+
+<!-- TEK OYUNCU SÜRE -->
+<div id="screen-solo-time" class="screen hidden">
+  <div class="mode-title">⛳ Tek Oyuncu</div>
+  <div class="mode-section-title" style="max-width:340px">⏱️ Süre Limiti Seç</div>
+  <div class="time-chips" style="max-width:340px">
+    <div class="time-chip selected" data-secs="0" onclick="selectSoloTime(this)">∞ Sınırsız</div>
+    <div class="time-chip" data-secs="60" onclick="selectSoloTime(this)">1 Dak</div>
+    <div class="time-chip" data-secs="120" onclick="selectSoloTime(this)">2 Dak</div>
+    <div class="time-chip" data-secs="180" onclick="selectSoloTime(this)">3 Dak</div>
+  </div>
+  <button class="mode-start-btn" id="solo-start-btn" style="max-width:340px;margin-top:16px">▶ Başla!</button>
+  <button class="back-btn" id="solo-back" style="margin-top:12px">← Geri</button>
 </div>
 
 <!-- MOD SEÇİMİ -->
 <div id="screen-mode" class="screen hidden">
-  <div class="mode-title">🤖 Rakip Seç</div>
+  <div style="width:100%;max-width:360px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:0;">
+  <div class="mode-title" style="margin-bottom:12px">🤖 Rakip & Mod Seç</div>
   <div class="mode-cards">
     <div class="mode-card" data-diff="easy" onclick="selectDiff(this)">
       <div class="mode-ico">😊</div>
       <h3>Kolay — Acemi Mehmet</h3>
-      <p>Sırayla oynarsın. Hata yapar, rastgele vurur. Öğrenmek için ideal.</p>
+      <p>Hata yapar, rastgele vurur. Öğrenmek için ideal.</p>
     </div>
     <div class="mode-card selected" data-diff="medium" onclick="selectDiff(this)">
       <div class="mode-ico">😤</div>
       <h3>Orta — Usta Kerem</h3>
-      <p>Sırayla oynarsın. Engelleri hesaplar, makul güç kullanır.</p>
+      <p>Engelleri hesaplar, makul güç kullanır.</p>
     </div>
     <div class="mode-card" data-diff="hard" onclick="selectDiff(this)">
       <div class="mode-ico">😈</div>
       <h3>Zor — Pro Ayşe</h3>
-      <p>Sırayla oynarsın. Neredeyse mükemmel nişan. Yenebilirsen yenebilirsin!</p>
+      <p>Neredeyse mükemmel nişan. Yenebilirsen yenebilirsin!</p>
     </div>
     <div class="mode-card" data-diff="multi" onclick="selectDiff(this)">
       <div class="mode-ico">👥</div>
       <h3>Turnuva — 3 AI ile</h3>
-      <p>Sen + 3 AI sıra sıra oynar. Kim az vuruşla bitirir?</p>
+      <p>Sen + 3 AI. Kim önce / az vuruşla bitirir?</p>
     </div>
   </div>
-  <button class="mode-start-btn" id="mode-start-btn">🏌️ Başla!</button>
-  <button class="back-btn" id="mode-back" style="margin-top:12px">← Geri</button>
+  <div class="mode-section-title" style="width:100%">⏱️ Süre Limiti</div>
+  <div class="time-chips" style="width:100%">
+    <div class="time-chip selected" data-secs="0" onclick="selectTime(this)">∞ Sınırsız</div>
+    <div class="time-chip" data-secs="60" onclick="selectTime(this)">1 Dak</div>
+    <div class="time-chip" data-secs="120" onclick="selectTime(this)">2 Dak</div>
+    <div class="time-chip" data-secs="180" onclick="selectTime(this)">3 Dak</div>
+  </div>
+  <div class="mode-section-title" style="width:100%">🏎️ Oyun Kuralı</div>
+  <label class="race-toggle" style="width:100%">
+    <input type="checkbox" id="race-mode-chk">
+    <div class="race-toggle-label">
+      <strong>Yarış Modu</strong> — Sıra yok, herkes aynı anda oynar!<br>
+      <span style="font-size:11px;color:#888">İlk deliğe giren kazanır.</span>
+    </div>
+  </label>
+  <button class="mode-start-btn" id="mode-start-btn" style="width:100%;margin-top:14px">🏌️ Başla!</button>
+  <button class="back-btn" id="mode-back" style="margin-top:10px;align-self:center">← Geri</button>
+  </div>
 </div>
 
 <!-- DELİK SEÇ -->
@@ -217,11 +309,84 @@ body{background:#071207;overflow:hidden;font-family:'Segoe UI',sans-serif;touch-
     <div class="howto-title">Nasıl Oynanır?</div>
     <div class="howto-item"><div class="howto-icon">👆</div><div class="howto-text"><h3>Sürükle — Nişan Al</h3><p>Ekrana basıp sürükleyerek topun gideceği yönü ayarla.</p></div></div>
     <div class="howto-item"><div class="howto-icon">💪</div><div class="howto-text"><h3>Mesafe = Güç</h3><p>Uzun sürükleme = daha güçlü vuruş. Güç barını takip et.</p></div></div>
-    <div class="howto-item"><div class="howto-icon">📷</div><div class="howto-text"><h3>Hareketli Kamera</h3><p>Kamera topu takip eder ve topun gittiği yöne döner.</p></div></div>
-    <div class="howto-item"><div class="howto-icon">🤖</div><div class="howto-text"><h3>Sıra Tabanlı AI</h3><p>Sen vurursan, AI vurur. Sırayla devam eder. Kim az vuruşla delikleri bitirir?</p></div></div>
-    <div class="howto-item"><div class="howto-icon">🌬️</div><div class="howto-text"><h3>Rüzgar</h3><p>Üst sağdaki göstergeye dikkat et. Rüzgar topu saptırır.</p></div></div>
+    <div class="howto-item"><div class="howto-icon">⏱️</div><div class="howto-text"><h3>Süreli Mod</h3><p>Süre seçersen sayaç işler. Süre bitince en az vuruşan kazanır!</p></div></div>
+    <div class="howto-item"><div class="howto-icon">🏎️</div><div class="howto-text"><h3>Yarış Modu</h3><p>Sıra yok — herkes aynı anda oynar. İlk deliğe giren kazanır!</p></div></div>
+    <div class="howto-item"><div class="howto-icon">🤖</div><div class="howto-text"><h3>AI Rakip</h3><p>3 zorluk + Turnuva modu. Yarış modunda AI'lar da aynı anda oynar!</p></div></div>
     <div class="howto-item"><div class="howto-icon">⭐</div><div class="howto-text"><h3>Puan</h3><p>Delik-İn-Bir 🌟 → Kartal 🦅 → Birdie 🐦 → Par ✅ → Bogey 😅</p></div></div>
     <button class="menu-btn" id="howto-back" style="width:100%;margin-top:6px;background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.15);">← Geri</button>
+  </div>
+</div>
+
+<!-- GÜNCELLEMELER -->
+<div id="screen-about" class="screen hidden">
+  <div class="about-content">
+    <div class="about-header">
+      <div class="about-logo">⛳ MİNİ<span>GOLF</span> 3D</div>
+      <div class="about-version">v5.0 — 2026</div>
+      <div class="about-tagline">Akıllı · Gerçekçi · Eğlenceli</div>
+    </div>
+    <hr class="about-divider">
+    <div class="changelog-title">📋 Güncelleme Geçmişi</div>
+    <div class="changelog-entry latest">
+      <div class="changelog-ver">
+        <span class="cver-tag gold">v5.0</span>
+        <span class="cver-date">Aralık 2025</span>
+        <span class="cver-label">SON GÜNCELLEME</span>
+      </div>
+      <ul class="changelog-items">
+        <li>⏱️ Süreli Mod — 1/2/3 dakika veya sınırsız seçeneği eklendi</li>
+        <li>🏎️ Yarış Modu — sıra yok, herkes aynı anda oynar, ilk giren kazanır</li>
+        <li>⛳ Tek Oyuncu için de süre seçim ekranı eklendi</li>
+        <li>📋 Güncelleme geçmişi eklendi</li>
+        <li>🏆 Süre bitince kapsamlı sonuç ekranı gösterilir</li>
+      </ul>
+    </div>
+    <div class="changelog-entry">
+      <div class="changelog-ver"><span class="cver-tag">v4.5</span><span class="cver-date">Kasım 2025</span></div>
+      <ul class="changelog-items">
+        <li>🌲 Parkur etrafına tema bazlı 3D objeler (ağaç, kaya, çiçek, gölet)</li>
+        <li>🌀 Dönen fan, sarkaç, tampon top, dar geçit, rampa engelleri</li>
+        <li>♾️ Sonsuz çimen zemin — beyaz kenar tamamen ortadan kalktı</li>
+        <li>🏁 Başlangıç ve bitiş duvarları eklendi</li>
+        <li>🔧 Top duvarın arkasında başlama hatası düzeltildi</li>
+      </ul>
+    </div>
+    <div class="changelog-entry">
+      <div class="changelog-ver"><span class="cver-tag">v4.0</span><span class="cver-date">Ekim 2025</span></div>
+      <ul class="changelog-items">
+        <li>📷 Dinamik kamera — top nereye giderse kamera o yöne döner</li>
+        <li>🎵 Web Audio ses sistemi — vuruş, çarpma, deliğe girme sesleri</li>
+        <li>🇹🇷 Arayüz tamamen Türkçeleştirildi</li>
+        <li>☰ Menüye dön butonu oyun içinden erişilebilir</li>
+      </ul>
+    </div>
+    <div class="changelog-entry">
+      <div class="changelog-ver"><span class="cver-tag">v3.0</span><span class="cver-date">Eylül 2025</span></div>
+      <ul class="changelog-items">
+        <li>🤖 3 farklı AI rakip (Kolay/Orta/Zor) + Turnuva modu</li>
+        <li>💾 localStorage ile ilerleme kaydı</li>
+        <li>🌍 10 dünya teması, her 100 levelda değişir</li>
+      </ul>
+    </div>
+    <div class="changelog-entry">
+      <div class="changelog-ver"><span class="cver-tag">v2.0</span><span class="cver-date">Ağustos 2025</span></div>
+      <ul class="changelog-items">
+        <li>🛤️ Kıvrımlı parkur yol sistemi — ahşap kenarlı gerçek koridor</li>
+        <li>📈 1000 level boyunca kesintisiz zorluk eğrisi</li>
+        <li>☁️ Gradyan gökyüzü ve bulut animasyonları</li>
+      </ul>
+    </div>
+    <div class="changelog-entry">
+      <div class="changelog-ver"><span class="cver-tag">v1.0</span><span class="cver-date">Temmuz 2025</span></div>
+      <ul class="changelog-items">
+        <li>⛳ İlk sürüm — 3D Mini Golf oyunu</li>
+        <li>🎮 Three.js + Cannon-es fizik motoru</li>
+        <li>📱 Mobil uyumlu sürükle-bırak kontroller</li>
+      </ul>
+    </div>
+    <hr class="about-divider">
+    <div class="about-credits">Three.js · Cannon-ES · Web Audio API<br>Tüm hakları saklıdır · 2025</div>
+    <button class="back-btn" id="about-back" style="align-self:center;margin-bottom:24px;padding:10px 28px;font-size:14px">← Ana Menü</button>
   </div>
 </div>
 
@@ -236,6 +401,7 @@ body{background:#071207;overflow:hidden;font-family:'Segoe UI',sans-serif;touch-
         <div class="stat-box"><div class="stat-label">Par</div><div class="stat-value" id="ui-par">3</div></div>
         <div class="stat-box"><div class="stat-label">Vuruş</div><div class="stat-value" id="ui-shots">0</div></div>
       </div>
+      <div id="timer-box">⏱ 2:00</div>
       <div id="hole-name-bar">DELİK 1</div>
       <div id="wind-box">
         <div class="wind-label">Rüzgar</div>
@@ -245,6 +411,7 @@ body{background:#071207;overflow:hidden;font-family:'Segoe UI',sans-serif;touch-
       <button id="menu-back-btn">☰ Menü</button>
       <div id="ai-board"></div>
       <div id="turn-banner"></div>
+      <div id="race-banner"></div>
       <div id="power-container">
         <div id="power-label">GÜÇ</div>
         <div id="power-track"><div id="power-fill"></div></div>
@@ -268,6 +435,13 @@ body{background:#071207;overflow:hidden;font-family:'Segoe UI',sans-serif;touch-
         <div id="ac-title">TÜM 1000 DELİK!</div>
         <div id="ac-sub"></div>
         <button id="ac-main-btn">Ana Menü</button>
+      </div>
+      <div id="time-up">
+        <div id="tu-title">⏰ SÜRE BİTTİ!</div>
+        <div id="tu-sub"></div>
+        <div id="tu-score"></div>
+        <div id="tu-results"></div>
+        <button id="tu-btn">Ana Menü</button>
       </div>
     </div>
   </div>
@@ -680,15 +854,145 @@ function buildLevelSelect(){
 }
 
 // ═══════════════════════════════════════════════
-//  MOD SEÇİMİ
+//  MOD SEÇİMİ STATE
 // ═══════════════════════════════════════════════
-let selectedDiff='medium';
-window.selectDiff=function(el){
+let selectedDiff = 'medium';
+let selectedTimeSecs = 0;  // 0 = sınırsız
+let isRaceMode = false;
+let soloTimeSecs = 0;
+
+window.selectDiff = function(el){
   document.querySelectorAll('.mode-card').forEach(c=>c.classList.remove('selected'));
-  el.classList.add('selected');
-  selectedDiff=el.dataset.diff;
-  sndClick();
+  el.classList.add('selected'); selectedDiff = el.dataset.diff; sndClick();
 };
+window.selectTime = function(el){
+  document.querySelectorAll('#screen-mode .time-chip').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected'); selectedTimeSecs = parseInt(el.dataset.secs); sndClick();
+};
+window.selectSoloTime = function(el){
+  document.querySelectorAll('#screen-solo-time .time-chip').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected'); soloTimeSecs = parseInt(el.dataset.secs); sndClick();
+};
+
+// ═══════════════════════════════════════════════
+//  ZAMANLAYICI SİSTEMİ
+// ═══════════════════════════════════════════════
+let timerRemaining = 0;  // saniye
+let timerRunning = false;
+
+function startTimer(secs){
+  if(!secs){ document.getElementById('timer-box').style.display='none'; return; }
+  timerRemaining = secs; timerRunning = true;
+  document.getElementById('timer-box').style.display = 'block';
+  updateTimerDisplay();
+}
+function updateTimerDisplay(){
+  const m = Math.floor(timerRemaining/60), s = Math.floor(timerRemaining%60);
+  const txt = `⏱ ${m}:${s.toString().padStart(2,'0')}`;
+  const el = document.getElementById('timer-box');
+  el.textContent = txt;
+  el.classList.toggle('urgent', timerRemaining <= 15);
+}
+function tickTimer(dt){
+  if(!timerRunning || timerRemaining <= 0) return;
+  timerRemaining -= dt;
+  updateTimerDisplay();
+  if(timerRemaining <= 0){ timerRemaining = 0; timerRunning = false; onTimeUp(); }
+}
+function stopTimer(){ timerRunning = false; }
+
+function onTimeUp(){
+  if(levelComplete) return;
+  levelComplete = true; stopTimer();
+  // Süre bilinci — sonuç ekranını göster
+  const lvl = generateLevel(currentLevelIdx);
+  document.getElementById('tu-sub').textContent = `${lvl.n}. delikte ${shots} vuruşta kaldın`;
+  let scoreStr = `Toplam tamamlanan: ${currentLevelIdx - (Save.data.unlockedUp-1)} delik`;
+  document.getElementById('tu-score').textContent = scoreStr;
+
+  // AI varsa sıralama
+  buildTimeUpResults();
+  playTone(220,'sawtooth',0.15,0.2);
+  playTone(185,'sawtooth',0.2,0.18,0.12);
+  setTimeout(()=>document.getElementById('time-up').classList.add('show'), 600);
+}
+
+function buildTimeUpResults(){
+  const res = document.getElementById('tu-results');
+  if(!activeMode){ res.style.display='none'; return; }
+  res.style.display = '';
+  const all = [{name:'Sen', shots, emoji:'🏌️', color:'#00e676'},
+    ...aiPlayers.map(ai=>({name:ai.profile.name, shots:ai.shots||99, emoji:ai.profile.emoji, color:ai.profile.color}))];
+  all.sort((a,b)=>a.shots-b.shots);
+  res.innerHTML = '<div style="font-size:10px;color:#888;margin-bottom:6px;letter-spacing:1px;text-transform:uppercase">Bu Delikteki Sıralama</div>';
+  all.forEach((p,i)=>{
+    const row = document.createElement('div'); row.className='tur-row'+(i===0?' winner':'');
+    row.innerHTML=`<span class="tur-name" style="color:${p.color}">${['🥇','🥈','🥉',''][Math.min(i,3)]} ${p.emoji} ${p.name}</span><span class="tur-s" style="color:${p.color}">${p.shots===99?'—':p.shots+' 🏌️'}</span>`;
+    res.appendChild(row);
+  });
+}
+
+// ═══════════════════════════════════════════════
+//  YARIŞ MODU — herkes aynı anda
+// ═══════════════════════════════════════════════
+function startRaceAI(lvl){
+  // Yarış modunda tüm AI'lar hemen düşünmeye başlar
+  aiPlayers.forEach((ai, i)=>{
+    ai.state = 'thinking';
+    ai.thinkTimer = ai.profile.thinkTime[0]*0.3 + Math.random()*(ai.profile.thinkTime[1]-ai.profile.thinkTime[0])*0.3 + i*400;
+  });
+}
+
+function processRaceAI(dt){
+  if(!activeMode || !isRaceMode) return;
+  aiPlayers.forEach(ai=>{
+    if(ai.done) return;
+    if(ai.state === 'thinking'){
+      ai.thinkTimer -= dt*1000;
+      if(ai.thinkTimer <= 0){
+        const shot = calcAIShot(ai.profile, ai.lvlRef, ai.body.position);
+        ai.body.wakeUp();
+        ai.body.velocity.set(shot.dx*shot.power*18+windVec.x, 0.18, shot.dz*shot.power*18+windVec.z);
+        ai.body.angularVelocity.set(0,0,0);
+        ai.shots++;
+        ai.state = 'moving';
+        sndAIHit();
+        updateTurnBannerAndBoard();
+      }
+    } else if(ai.state === 'moving'){
+      const spd = ai.body.velocity.length();
+      if(spd < 0.09){
+        // Deliğe girdi mi?
+        const lvl = generateLevel(currentLevelIdx);
+        const dx = ai.body.position.x - lvl.holePos.x;
+        const dz = ai.body.position.z - lvl.holePos.z;
+        if(Math.sqrt(dx*dx+dz*dz) < HOLE_R*1.2){
+          ai.done = true; ai.state = 'done';
+          // Yarış modunda AI kazandıysa banner
+          if(!levelComplete){
+            showRaceBanner(`${ai.profile.emoji} ${ai.profile.name} KAZANDI!`, '#ffd700');
+            setTimeout(()=>hideRaceBanner(), 2200);
+          }
+          sndHoleIn();
+        } else if(ai.shots < (generateLevel(currentLevelIdx).par + 5)){
+          // Tekrar vur
+          ai.state = 'thinking';
+          ai.thinkTimer = ai.profile.thinkTime[0]*0.5 + Math.random()*ai.profile.thinkTime[1]*0.3;
+        } else {
+          ai.done = true; ai.state = 'done';
+        }
+        updateTurnBannerAndBoard();
+      }
+    }
+  });
+}
+
+function showRaceBanner(txt, color='#ffa500'){
+  const b = document.getElementById('race-banner');
+  b.innerHTML = `<span style="color:${color}">${txt}</span>`;
+  b.classList.add('show');
+}
+function hideRaceBanner(){ document.getElementById('race-banner').classList.remove('show'); }
 
 // ═══════════════════════════════════════════════
 //  EKRAN NAVİGASYON
@@ -698,33 +1002,49 @@ function showScreen(id){
   document.getElementById(id).classList.remove('hidden');
 }
 
-document.getElementById('btn-play').addEventListener('click',()=>{sndClick();startGame(Save.data.unlockedUp-1,null);});
-document.getElementById('btn-pvp').addEventListener('click',()=>{sndClick();showScreen('screen-mode');});
-document.getElementById('btn-levels').addEventListener('click',()=>{sndClick();buildLevelSelect();showScreen('screen-levels');});
-document.getElementById('btn-howto').addEventListener('click',()=>{sndClick();showScreen('screen-howto');});
-document.getElementById('ls-back').addEventListener('click',()=>{sndClick();showScreen('screen-menu');});
-document.getElementById('howto-back').addEventListener('click',()=>{sndClick();showScreen('screen-menu');});
-document.getElementById('mode-back').addEventListener('click',()=>{sndClick();showScreen('screen-menu');});
+document.getElementById('btn-play').addEventListener('click',()=>{ sndClick(); showScreen('screen-solo-time'); });
+document.getElementById('btn-pvp').addEventListener('click',()=>{ sndClick(); showScreen('screen-mode'); });
+document.getElementById('btn-levels').addEventListener('click',()=>{ sndClick(); buildLevelSelect(); showScreen('screen-levels'); });
+document.getElementById('btn-howto').addEventListener('click',()=>{ sndClick(); showScreen('screen-howto'); });
+document.getElementById('btn-about').addEventListener('click',()=>{ sndClick(); showScreen('screen-about'); });
+document.getElementById('ls-back').addEventListener('click',()=>{ sndClick(); showScreen('screen-menu'); });
+document.getElementById('howto-back').addEventListener('click',()=>{ sndClick(); showScreen('screen-menu'); });
+document.getElementById('mode-back').addEventListener('click',()=>{ sndClick(); showScreen('screen-menu'); });
+document.getElementById('solo-back').addEventListener('click',()=>{ sndClick(); showScreen('screen-menu'); });
+document.getElementById('about-back').addEventListener('click',()=>{ sndClick(); showScreen('screen-menu'); });
+
+document.getElementById('solo-start-btn').addEventListener('click',()=>{
+  sndClick(); showScreen('screen-game');
+  initEngine(); resizeEngine();
+  currentLevelIdx = Save.data.unlockedUp - 1;
+  isRaceMode = false;
+  loadGame(currentLevelIdx, null, soloTimeSecs);
+  if(!animID) gameLoop();
+});
+
 document.getElementById('mode-start-btn').addEventListener('click',()=>{
   sndClick(); showScreen('screen-game');
   initEngine(); resizeEngine();
-  currentLevelIdx=Save.data.unlockedUp-1;
-  loadGame(currentLevelIdx,selectedDiff);
+  currentLevelIdx = Save.data.unlockedUp - 1;
+  isRaceMode = document.getElementById('race-mode-chk').checked;
+  loadGame(currentLevelIdx, selectedDiff, selectedTimeSecs);
   if(!animID) gameLoop();
 });
-document.getElementById('menu-back-btn').addEventListener('click',()=>{sndClick();cleanupLevel();showScreen('screen-menu');});
-document.getElementById('hc-menu').addEventListener('click',()=>{sndClick();cleanupLevel();showScreen('screen-menu');});
-document.getElementById('ac-main-btn').addEventListener('click',()=>{sndClick();cleanupLevel();showScreen('screen-menu');});
+
+document.getElementById('menu-back-btn').addEventListener('click',()=>{ sndClick(); cleanupLevel(); showScreen('screen-menu'); });
+document.getElementById('hc-menu').addEventListener('click',()=>{ sndClick(); cleanupLevel(); showScreen('screen-menu'); });
+document.getElementById('ac-main-btn').addEventListener('click',()=>{ sndClick(); cleanupLevel(); showScreen('screen-menu'); });
+document.getElementById('tu-btn').addEventListener('click',()=>{ sndClick(); cleanupLevel(); showScreen('screen-menu'); });
 document.getElementById('hc-next').addEventListener('click',()=>{
   sndClick();
   document.getElementById('hole-complete').classList.remove('show');
-  const next=currentLevelIdx+1;
-  if(next<1000){currentLevelIdx=next;loadGame(next,activeMode);}
+  const next = currentLevelIdx + 1;
+  if(next < 1000){ currentLevelIdx = next; loadGame(next, activeMode, timerRunning ? timerRemaining : (activeTimeSecs||0)); }
 });
-document.getElementById('restart-btn').addEventListener('click',()=>{sndClick();loadGame(currentLevelIdx,activeMode);});
+document.getElementById('restart-btn').addEventListener('click',()=>{ sndClick(); loadGame(currentLevelIdx, activeMode, activeTimeSecs||0); });
 document.getElementById('sound-btn').addEventListener('click',()=>{
-  soundEnabled=!soundEnabled;
-  document.getElementById('sound-btn').textContent=soundEnabled?'🔊 Ses Açık':'🔇 Ses Kapalı';
+  soundEnabled = !soundEnabled;
+  document.getElementById('sound-btn').textContent = soundEnabled ? '🔊 Ses Açık' : '🔇 Ses Kapalı';
   if(soundEnabled) sndClick();
 });
 
@@ -791,13 +1111,15 @@ function resizeEngine(){
   arrowCanvas.width=W; arrowCanvas.height=H;
 }
 
-function startGame(idx,mode){
+function startGame(idx, mode, timeSecs=0){
   showScreen('screen-game');
   initEngine(); resizeEngine();
-  currentLevelIdx=idx;
-  loadGame(idx,mode);
+  currentLevelIdx = idx;
+  loadGame(idx, mode, timeSecs);
   if(!animID) gameLoop();
 }
+
+let activeTimeSecs = 0; // bu deliğin başındaki süre (yeniden başlatma için)
 
 // ─── TEMIZLE ──────────────────────────────────
 function cleanupLevel(){
@@ -808,38 +1130,40 @@ function cleanupLevel(){
   skyDome=null; cloudGroup=null; animatedObstacles=[];
   aiPlayers=[];levelComplete=false;ballMoving=false;isDragging=false;
   turnOrder=[];turnIndex=0;currentTurnEntity='player';waitingForBallStop=false;
-  stopRoll();
+  stopRoll(); stopTimer();
   if(powerInterval){clearInterval(powerInterval);powerInterval=null;}
   if(arrowCtx)arrowCtx.clearRect(0,0,arrowCanvas?.width||0,arrowCanvas?.height||0);
   document.getElementById('hole-complete').classList.remove('show');
   document.getElementById('all-clear').classList.remove('show');
+  document.getElementById('time-up').classList.remove('show');
+  document.getElementById('timer-box').style.display='none';
   document.getElementById('power-container').classList.remove('visible');
   document.getElementById('ai-board').innerHTML='';
-  hideTurnBanner();
+  hideTurnBanner(); hideRaceBanner();
 }
 
-// ─── LEVEL YÜKLe ──────────────────────────────
-function loadGame(idx,mode){
+// ─── LEVEL YÜKLE ──────────────────────────────
+function loadGame(idx, mode, timeSecs=0){
   cleanupLevel();
   if(!animID) gameLoop();
 
-  activeMode=mode;
-  const lvl=generateLevel(idx);
-  windVec={...lvl.wind};
-  shots=0;levelComplete=false;ballMoving=false;
+  activeMode = mode;
+  activeTimeSecs = timeSecs;
+  const lvl = generateLevel(idx);
+  windVec = {...lvl.wind};
+  shots=0; levelComplete=false; ballMoving=false;
 
-  document.getElementById('ui-level').textContent=lvl.n;
-  document.getElementById('ui-par').textContent=lvl.par;
-  document.getElementById('ui-shots').textContent='0';
-  document.getElementById('hole-name-bar').textContent=lvl.name;
-  document.getElementById('wb-name').textContent=lvl.world.name;
+  document.getElementById('ui-level').textContent = lvl.n;
+  document.getElementById('ui-par').textContent = lvl.par;
+  document.getElementById('ui-shots').textContent = '0';
+  document.getElementById('hole-name-bar').textContent = lvl.name;
+  document.getElementById('wb-name').textContent = lvl.world.name;
   document.getElementById('hole-complete').classList.remove('show');
   document.getElementById('all-clear').classList.remove('show');
+  document.getElementById('time-up').classList.remove('show');
   updateWindUI(windVec);
 
   scene.fog = new THREE.Fog(lvl.world.fog, 45, 110);
-
-  // Işıklar — profesyonel gün ışığı seti
   const amb=new THREE.AmbientLight(lvl.world.sun, 0.55); scene.add(amb);
   const sun=new THREE.DirectionalLight(lvl.world.sun, 1.35);
   sun.position.set(12,22,8); sun.castShadow=true;
@@ -851,40 +1175,45 @@ function loadGame(idx,mode){
   scene.add(new THREE.HemisphereLight(lvl.world.skyTop, lvl.world.grass2, 0.45));
   levelObjs.push({mesh:amb},{mesh:sun});
 
-  buildFloor(lvl);buildBoundaryWalls(lvl);
+  buildFloor(lvl); buildBoundaryWalls(lvl);
   addHole(lvl.holePos);
   addBall(lvl.ballStart);
 
-  // Sıra sistemi kur
-  turnOrder=['player'];
+  // AI topları kur
+  turnOrder = ['player'];
   if(mode){
-    const profiles=mode==='multi'
-      ?[AI_PROFILES.easy,AI_PROFILES.medium,AI_PROFILES.hard]
-      :[AI_PROFILES[mode]];
-    const cols=[0xff8c42,0x4fc3f7,0xce93d8];
+    const profiles = mode==='multi'
+      ? [AI_PROFILES.easy, AI_PROFILES.medium, AI_PROFILES.hard]
+      : [AI_PROFILES[mode]];
+    const cols = [0xff8c42, 0x4fc3f7, 0xce93d8];
     profiles.forEach((prof,i)=>{
-      // AI topları ballStart'ın biraz önünde (parkur içinde) spawn olur
-      const offset={x: lvl.ballStart.x + (i+1)*0.6, z: lvl.ballStart.z + (i%2===0?1:-1)*(i+1)*0.45};
-      const mesh=createAIBall(offset,cols[i%cols.length]);
-      const shd=new THREE.Mesh(new THREE.CircleGeometry(BALL_R*1.2,14),new THREE.MeshBasicMaterial({color:0x000000,transparent:true,opacity:.28}));
-      shd.rotation.x=-Math.PI/2;shd.position.set(offset.x,.002,offset.z);scene.add(shd);
-      const body=new CANNON.Body({mass:.1,material:new CANNON.Material({friction:.45,restitution:.32}),linearDamping:.55,angularDamping:.65});
+      const offset = {x: lvl.ballStart.x + (i+1)*0.6, z: lvl.ballStart.z + (i%2===0?1:-1)*(i+1)*0.45};
+      const mesh = createAIBall(offset, cols[i%cols.length]);
+      const shd = new THREE.Mesh(new THREE.CircleGeometry(BALL_R*1.2,14),new THREE.MeshBasicMaterial({color:0x000000,transparent:true,opacity:.28}));
+      shd.rotation.x=-Math.PI/2; shd.position.set(offset.x,.002,offset.z); scene.add(shd);
+      const body = new CANNON.Body({mass:.1,material:new CANNON.Material({friction:.45,restitution:.32}),linearDamping:.55,angularDamping:.65});
       body.addShape(new CANNON.Sphere(BALL_R));
-      body.position.set(offset.x,BALL_R,offset.z);
-      body.allowSleep=true;body.sleepSpeedLimit=.1;body.sleepTimeLimit=.3;
+      body.position.set(offset.x, BALL_R, offset.z);
+      body.allowSleep=true; body.sleepSpeedLimit=.1; body.sleepTimeLimit=.3;
       world.addBody(body);
-      aiPlayers.push({profile:prof,body,mesh,shadowMesh:shd,shots:0,done:false,state:'idle',thinkTimer:0,lvlRef:lvl});
+      aiPlayers.push({profile:prof, body, mesh, shadowMesh:shd, shots:0, done:false, state:'idle', thinkTimer:0, lvlRef:lvl});
       turnOrder.push(`ai${i}`);
     });
   }
-  turnIndex=0;currentTurnEntity=turnOrder[0];
+  turnIndex=0; currentTurnEntity=turnOrder[0];
+
+  // Yarış modunda AI'lar hemen başlar
+  if(mode && isRaceMode) startRaceAI(lvl);
 
   buildAIBoard(mode);
   updateTurnBannerAndBoard();
 
+  // Zamanlayıcı başlat
+  startTimer(timeSecs);
+
   // Kamera başlangıç
-  camYaw=Math.PI; camYawCurrent=Math.PI; // deliklere yönlü başlangıç
-  updateCameraFromYaw(lvl.ballStart.x,lvl.ballStart.z);
+  camYaw=Math.PI; camYawCurrent=Math.PI;
+  updateCameraFromYaw(lvl.ballStart.x, lvl.ballStart.z);
 }
 
 function createAIBall(pos,color){
@@ -1937,16 +2266,14 @@ function updateCamera(dt){
 // ─── VURUŞ ────────────────────────────────────
 function shoot(dx,dz,pwr){
   if(ballMoving||levelComplete) return;
-  if(currentTurnEntity!=='player') return;
-
+  if(!isRaceMode && currentTurnEntity!=='player') return; // yarış modunda sıra yok
   shots++;
   document.getElementById('ui-shots').textContent=shots;
   ballBody.wakeUp();
   ballBody.velocity.set(dx*pwr*18+windVec.x,.18,dz*pwr*18+windVec.z);
   ballBody.angularVelocity.set(0,0,0);
   ballMoving=true;
-  waitingForBallStop=true;
-  // Kamera yönü: vuruş yönüne kilitle
+  if(!isRaceMode) waitingForBallStop=true; // sadece sıra modunda
   camYaw = Math.atan2(dx, dz) + Math.PI;
   sndHit(pwr);
 }
@@ -2067,28 +2394,35 @@ function checkAIBallStopped(){
 
 // ─── DELIK KONTROL ────────────────────────────
 function checkHole(){
-  if(currentTurnEntity!=='player') return;
+  // Yarış modunda sıra kısıtlaması yok — her zaman top konumunu kontrol et
+  if(!isRaceMode && currentTurnEntity!=='player') return;
   const lvl=generateLevel(currentLevelIdx);
   const bp=ballBody.position;
-  const dx=bp.x-lvl.holePos.x,dz=bp.z-lvl.holePos.z;
-  if(Math.sqrt(dx*dx+dz*dz)<HOLE_R*1.15&&ballBody.velocity.length()<4.5) onHoleIn();
+  const dx=bp.x-lvl.holePos.x, dz=bp.z-lvl.holePos.z;
+  if(Math.sqrt(dx*dx+dz*dz)<HOLE_R*1.15 && ballBody.velocity.length()<4.5) onHoleIn();
 }
 
 function onHoleIn(){
   if(levelComplete) return;
   levelComplete=true;
-  ballBody.velocity.set(0,0,0);ballBody.angularVelocity.set(0,0,0);
-  hideTurnBanner();
+  ballBody.velocity.set(0,0,0); ballBody.angularVelocity.set(0,0,0);
+  hideTurnBanner(); hideRaceBanner(); stopTimer();
   const lvl=generateLevel(currentLevelIdx);
-  const par=lvl.par,diff=shots-par;
-  let emoji='⛳',title='',rating='';
+  const par=lvl.par, diff=shots-par;
+  let emoji='⛳', title='', rating='';
   if(shots===1){emoji='🌟';title='DELİK İN BİR!';rating='★★★';}
   else if(diff<=-2){emoji='🦅';title='KARTAL!';rating='★★★';}
   else if(diff===-1){emoji='🐦';title='BİRDİE!';rating='★★☆';}
   else if(diff===0){emoji='✅';title='PAR';rating='★★☆';}
   else if(diff===1){emoji='😅';title='BOGEY';rating='★☆☆';}
   else{emoji='😬';title=`+${diff}`;rating='☆☆☆';}
-  Save.setScore(lvl.n,shots);Save.unlock(lvl.n+1);
+
+  // Yarış modunda "SEN KAZANDIN!" ekle
+  if(isRaceMode && activeMode){
+    emoji='🏆'; title='SEN KAZANDIN!'; rating='🎉🎉🎉';
+  }
+
+  Save.setScore(lvl.n, shots); Save.unlock(lvl.n+1);
   sndHoleIn();
 
   document.getElementById('hc-emoji').textContent=emoji;
@@ -2098,7 +2432,7 @@ function onHoleIn(){
   buildHoleResults(lvl);
 
   document.getElementById('hc-next').style.display=currentLevelIdx>=999?'none':'';
-  setTimeout(()=>document.getElementById('hole-complete').classList.add('show'),700);
+  setTimeout(()=>document.getElementById('hole-complete').classList.add('show'), 700);
   if(currentLevelIdx>=999){
     setTimeout(()=>{
       document.getElementById('all-clear').classList.add('show');
@@ -2109,14 +2443,27 @@ function onHoleIn(){
 
 function buildHoleResults(lvl){
   const res=document.getElementById('hc-results');
-  if(!activeMode){res.style.display='none';return;}
+  if(!activeMode){res.style.display='none'; return;}
   res.style.display='';
-  const all=[{name:'Sen',shots,emoji:'🏌️',color:'#00e676'},...aiPlayers.map(ai=>({name:ai.profile.name,shots:ai.done?ai.shots:lvl.par+5,emoji:ai.profile.emoji,color:ai.profile.color}))];
-  all.sort((a,b)=>a.shots-b.shots);
-  res.innerHTML='<div style="font-size:10px;color:#888;margin-bottom:6px;letter-spacing:1px;text-transform:uppercase">Sıralama</div>';
+  const all=[
+    {name:'Sen', shots, emoji:'🏌️', color:'#00e676', winner: true},
+    ...aiPlayers.map(ai=>({
+      name:ai.profile.name,
+      shots: ai.done ? ai.shots : (isRaceMode ? '—' : lvl.par+5),
+      emoji:ai.profile.emoji,
+      color:ai.profile.color,
+      winner: false
+    }))
+  ];
+  // Yarış modunda oyuncu her zaman 1., AI'lar "bitmedi" gösterir
+  if(!isRaceMode) all.sort((a,b)=>(typeof a.shots==='number'?a.shots:99)-(typeof b.shots==='number'?b.shots:99));
+  res.innerHTML='<div style="font-size:10px;color:#888;margin-bottom:6px;letter-spacing:1px;text-transform:uppercase">'+(isRaceMode?'🏁 Yarış Sonucu':'Sıralama')+'</div>';
   all.forEach((p,i)=>{
-    const row=document.createElement('div');row.className='hcr-row'+(i===0?' winner':'');
-    row.innerHTML=`<span class="hcr-name" style="color:${p.color}">${['🥇','🥈','🥉',''][i]||''} ${p.emoji} ${p.name}</span><span class="hcr-s" style="color:${p.color}">${p.shots} 🏌️</span>`;
+    const row=document.createElement('div');
+    row.className='hcr-row'+(i===0||p.winner?' winner':'');
+    const medal=i===0?'🥇':i===1?'🥈':i===2?'🥉':'';
+    const shotsStr=typeof p.shots==='number'?`${p.shots} 🏌️`:p.shots;
+    row.innerHTML=`<span class="hcr-name" style="color:${p.color}">${medal} ${p.emoji} ${p.name}</span><span class="hcr-s" style="color:${p.color}">${shotsStr}</span>`;
     res.appendChild(row);
   });
 }
@@ -2145,8 +2492,8 @@ function getEvPos(e){return e.touches?{x:e.touches[0].clientX,y:e.touches[0].cli
 
 function onPD(e){
   if(ballMoving||levelComplete) return;
-  if(currentTurnEntity!=='player') return;
-  const p=getEvPos(e);isDragging=true;dragStart={...p};dragCurrent={...p};startPower();
+  if(!isRaceMode && currentTurnEntity!=='player') return; // sıra tabanlıysa sıra kontrolü
+  const p=getEvPos(e); isDragging=true; dragStart={...p}; dragCurrent={...p}; startPower();
 }
 function onPM(e){if(!isDragging)return;dragCurrent=getEvPos(e);drawArrow();updatePowerBar();}
 function onPU(e){
@@ -2248,7 +2595,7 @@ function setupGameEvents(){
 // ─── OYUN DÖNGÜSÜ ─────────────────────────────
 function gameLoop(time=0){
   animID=requestAnimationFrame(gameLoop);
-  const dt=Math.min((time-lastTime)/1000,.05);lastTime=time;
+  const dt=Math.min((time-lastTime)/1000,.05); lastTime=time;
 
   if(ballBody){
     world.step(1/60,dt,3);
@@ -2261,45 +2608,53 @@ function gameLoop(time=0){
       ballMesh.userData.shadow.position.z=ballBody.position.z;
     }
     const spd=ballBody.velocity.length();
-    if(ballMoving&&spd<.09){ballMoving=false;}
+    if(ballMoving&&spd<.09){ ballMoving=false; }
 
-    // Çarpma sesi
     checkCollisionSound();
 
-    // AI topları
+    // AI topları senkronize et
     aiPlayers.forEach(ai=>{
       ai.mesh.position.copy(ai.body.position);
       ai.mesh.quaternion.copy(ai.body.quaternion);
-      if(ai.shadowMesh){ai.shadowMesh.position.x=ai.body.position.x;ai.shadowMesh.position.z=ai.body.position.z;}
+      if(ai.shadowMesh){ ai.shadowMesh.position.x=ai.body.position.x; ai.shadowMesh.position.z=ai.body.position.z; }
     });
 
     if(!levelComplete){
       checkHole();
       checkFall();
-      // Hareketli engelleri güncelle (spinner, sarkaç, bumper pulse)
       animatedObstacles.forEach(o=>o.update(dt));
+
       if(activeMode){
-        processAITurn(dt);
-        checkAIBallStopped();
-        updateTurnBannerAndBoard();
+        if(isRaceMode){
+          // Yarış modu: herkes aynı anda, sıra yok
+          processRaceAI(dt);
+          updateTurnBannerAndBoard();
+        } else {
+          // Sıra tabanlı mod
+          processAITurn(dt);
+          checkAIBallStopped();
+          updateTurnBannerAndBoard();
+        }
       } else if(!activeMode&&!ballMoving&&waitingForBallStop){
         waitingForBallStop=false;
       }
+
+      // Zamanlayıcı tick
+      tickTimer(dt);
     }
   }
 
-  if(flagMesh) flagMesh.rotation.y = Math.sin(time * 0.002) * 0.09;
+  if(flagMesh) flagMesh.rotation.y = Math.sin(time*0.002)*0.09;
 
-  // Bulutları yavaşça sürükle
   if(cloudGroup){
-    cloudGroup.children.forEach(c => {
-      c.position.x += (c.userData.driftSpeed || 0.15) * dt;
-      if(c.position.x > 90) c.position.x = -90;
+    cloudGroup.children.forEach(c=>{
+      c.position.x += (c.userData.driftSpeed||0.15)*dt;
+      if(c.position.x>90) c.position.x=-90;
     });
   }
 
   updateCamera(dt);
-  renderer.render(scene, camera);
+  renderer.render(scene,camera);
 }
 
 window.addEventListener('resize',()=>{if(engineReady)resizeEngine();initMenuBg();});
@@ -2307,3 +2662,4 @@ showScreen('screen-menu');
 </script>
 </body>
 </html>
+
